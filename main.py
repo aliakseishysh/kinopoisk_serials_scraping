@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 from files import save_to_csv
 
-#fields name and rating
 serials_dict = {
 }
 
