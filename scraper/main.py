@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-from files import save_to_csv
+from utils.files import save_to_csv
 
 serials_dict = {
 }
