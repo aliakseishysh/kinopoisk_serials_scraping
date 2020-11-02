@@ -1,7 +1,23 @@
-# Скрейпинг сериалов из категории лучшие с kinopoisk.ru
-## main.py
-Скрипт парсинга страниц по адресам: 
-'https://www.kinopoisk.ru/popular/films/?page={i}&sort=popularity&quick_filters=serials&tab=all', где i ∈ [1,9]
+# Scrape serials/films from kinopoisk.ru
+# TODO
+    1) Make async requests
 
-## files.py
-Скрипт сокранения данных из dictionary в .csv-файл
+To run script:
+    python run.py 
+        file_path={your_file_name.csv} 
+        [page={start page to scrape}]
+        [sort={type of sorting}]
+        [quick_filters={type of content}]
+        [last_page={last page to scrape}]
+
+    sort  = [
+                'popularity',
+                'votes',
+                'year',
+                'title',
+            ]
+
+    quick_filters = [
+                        'films', 
+                        'serials',
+                    ]
