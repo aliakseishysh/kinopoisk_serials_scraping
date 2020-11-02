@@ -3,4 +3,4 @@ __pycache__/
 utils/__pycache__/
 scraper/__pycache__/
 
-serials.py
+serials.csv
