@@ -1,4 +1,6 @@
 if __name__ == '__main__':
-    from scraper.main import run_app
-    run_app()
+    from sys import argv
+    from scraper.scraper import run_app
+    kwargs = dict(arg.split('=') for arg in argv[1:])
+    run_app(**kwargs)
     
