@@ -2,3 +2,6 @@
 __pycache__/
 utils/__pycache__/
 scraper/__pycache__/
+
+# idea
+.idea/
