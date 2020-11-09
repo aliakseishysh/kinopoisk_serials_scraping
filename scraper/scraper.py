@@ -15,7 +15,7 @@ def parse_page(url):
   
 
 def get_kwargs(**kwargs):
-    return  kwargs.get('file_path'), \
+    return  kwargs.get('file_name'), \
             kwargs.get('page'), \
             kwargs.get('last_page'), \
             kwargs.get('sort'), \
