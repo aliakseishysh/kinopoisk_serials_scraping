@@ -21,31 +21,43 @@ def get_kwargs(**kwargs):
             kwargs.get('sort'), \
             kwargs.get('quick_filters')
 
+
 def make_filter_string(sort, quick_filters):
     filters = ''
     filters = filters + f'&sort={sort}' if sort else filters
     filters = filters + f'&quick_filters={quick_filters}' if quick_filters else filters
     filters = filters + '&tab=all'
     return filters
-            
-def run_app(**kwargs):
 
-    url = "https://www.kinopoisk.ru/popular/films/?"
-    
-    # Get All Kwargs
-    file_path, page, last_page, sort, quick_filters = get_kwargs(**kwargs)
 
-    # Make Filter String
-    filters = make_filter_string(sort, quick_filters)
-    
-    # Start Scraping
+def build_urls(page, last_page, filters):
+    base_url = "https://www.kinopoisk.ru/popular/films/?"
+    urls = []
     if page:
         page = int(page)
         last_page = int(last_page) + 1 if last_page else page + 1
 
-        write_headers(file_path, 'Название', 'Рейтинг')
         for current_page in range(page, last_page):
-            save_to_csv(
-                file_path, 
-                parse_page(f'{url}page={current_page}{filters}')
-            ) 
+            urls.append(f'{base_url}page={current_page}{filters}')
+
+        return urls
+
+
+def run_app(**kwargs):
+
+    # Get All Kwargs
+    file_name, page, last_page, sort, quick_filters = get_kwargs(**kwargs)
+
+    # Make Filter String
+    filters = make_filter_string(sort, quick_filters)
+
+    # Make urls
+    urls = build_urls(page, last_page, filters)
+
+    # Start Scraping
+    write_headers(file_name, 'Название', 'Рейтинг')
+    for url in urls:
+        save_to_csv(
+            file_name,
+            parse_page(url)
+        )
