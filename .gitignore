@@ -5,3 +5,9 @@ scraper/__pycache__/
 
 # idea
 .idea/
+
+test.csv
+
+# venv
+.venv/
+Pipfile.lock
