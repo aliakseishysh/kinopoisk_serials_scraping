@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from requests import get
 from utils.files import write_headers, save_to_csv
+from concurrent.futures import ThreadPoolExecutor
 
  
 def parse_page(url):
@@ -15,7 +16,8 @@ def parse_page(url):
   
 
 def get_kwargs(**kwargs):
-    return  kwargs.get('file_name'), \
+    return \
+            kwargs.get('file_name'), \
             kwargs.get('page'), \
             kwargs.get('last_page'), \
             kwargs.get('sort'), \
@@ -56,8 +58,12 @@ def run_app(**kwargs):
 
     # Start Scraping
     write_headers(file_name, 'Название', 'Рейтинг')
-    for url in urls:
+
+    with ThreadPoolExecutor(3) as executor:
+        results = executor.map(parse_page, urls)
+
+    for result in results:
         save_to_csv(
             file_name,
-            parse_page(url)
+            result
         )
