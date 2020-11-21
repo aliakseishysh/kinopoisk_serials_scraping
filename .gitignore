@@ -9,3 +9,9 @@ Pipfile.lock
 
 # sql
 dev.sql
+
+# idea
+.idea/
+
+# test files
+test.csv
