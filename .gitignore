@@ -2,3 +2,10 @@
 __pycache__/
 utils/__pycache__/
 scraper/__pycache__/
+
+# .venv
+.venv/
+Pipfile.lock
+
+# sql
+dev.sql
